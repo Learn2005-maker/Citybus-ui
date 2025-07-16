@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Old Age Free Bus Pass</title>
+  <style>
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .main-container {
+      display: flex;
+      height: 100%; /* full height minus header */
+      width: 100%;
+    }
+
+    .main-container img {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .enquiry-form {
+      width: 50%;
+      background-color: #f8f8f8;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .enquiry-form label {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.3);
+    }
+
+    #checkStatus {
+      margin-top: 20px;
+      border: none;
+      background-color: #00bfa6;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 12px 40px;
+      font-size: 18px;
+      width: fit-content;
+    }
+
+    #checkStatus:hover {
+      background-color: #007f6e;
+    }
+
+    #status {
+      margin-top: 25px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #333;
+    }
+
+    /* Responsive layout for smaller screens */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .main-container img,
+      .enquiry-form {
+        width: 100%;
+        height: 50%;
+      }
+
+      .enquiry-form {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Old Age Free Bus Pass
+  </header>
+
+  <div class="main-container">
+    <img src="./FREEBUS.jpg" alt="Free Bus">
+
+    <div class="enquiry-form">
+      <label>
+        <input type="checkbox" id="seatAvailable" />
+        Is Seat available?
+      </label>
+
+      <label>
+        <input type="checkbox" id="ageAbove50" />
+        Is your age above 50?
+      </label>
+
+      <label>
+        <input type="checkbox" id="hasAadhar" />
+        Do you have Aadhar card?
+      </label>
+
+      <button id="checkStatus">Check Eligibility</button>
+      <p id="status"></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("checkStatus").addEventListener("click", function () {
+      const seatAvailable = document.getElementById("seatAvailable");
+      const ageAbove50 = document.getElementById("ageAbove50");
+      const hasAadhar = document.getElementById("hasAadhar");
+      const statusText = document.getElementById("status");
+
+      let message = "";
+
+      if (!seatAvailable) {
+        message = "❌ Sorry, no seats available.";
+      } else if (!ageAbove50) {
+        message = "❌ Sorry, only available for age above 50.";
+      } else if (!hasAadhar) {
+        message = "❌ Please carry your Aadhar card to proceed.";
+      } else {
+        message = "✅ Eligible! Please board the bus. 🚌";
+        alert("Welcome! You may enter the bus.");
+      }
+
+      statusText.textContent = message;
+    });
+  </script>-
+</body>
+</html>
